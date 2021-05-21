@@ -126,6 +126,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "custom post finder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/post/find/categoria/f6f2ddc5-bbbe-4926-9ec4-aa674a380b0e",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"post",
+								"find",
+								"categoria",
+								"f6f2ddc5-bbbe-4926-9ec4-aa674a380b0e"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -158,7 +179,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\":\"teste de edição\",\r\n    \"categoria\":\"Viagens\",\r\n    \"parametroteste\":\"teste\"\r\n}",
+							"raw": "{\r\n    \"nome\":\"Viagens\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
