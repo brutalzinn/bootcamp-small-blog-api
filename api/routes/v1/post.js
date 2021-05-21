@@ -8,6 +8,7 @@ module.exports = (router) => {
       .get(
         postController.lista
       )
+      
       .post(
         postController.createPost
       )
@@ -18,6 +19,11 @@ module.exports = (router) => {
       .delete(
       postController.delPost
       )
+      router.route('/post/:id')
+      .get(
+        postController.getPost
+      )
+
     
   
   

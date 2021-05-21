@@ -1,5 +1,5 @@
 
-const {create,list,del,edit} = require('../services/post.service');
+const {create,list,del,edit,get} = require('../services/post.service');
 
 
 const createPost= async (req,res,next) => {
@@ -20,6 +20,12 @@ const createPost= async (req,res,next) => {
     });
     
   }
+  const getPost = async (req,res,next) => {
+    const {id} = req.params
+  const response = await get(id)
+  
+     return res.status(200).json(response)
+    }
   const lista = async (req,res,next) => {
 
   const response = await list()
@@ -38,6 +44,7 @@ const createPost= async (req,res,next) => {
   module.exports = {
     createPost,
     delPost,
+    getPost,
     lista,
     editPost
   }

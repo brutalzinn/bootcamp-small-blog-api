@@ -6,6 +6,10 @@ const create = async (body) => {
 const edit = async (body) => {
 await Update('post',body)
 }
+const get = async (id) => {
+  const json = await openFile('post')
+  return json.find((item)=>item.id == id)
+}
 const del = async (body) => {
 
 await Delete('post',body)
@@ -19,5 +23,6 @@ module.exports = {
   create,
   list,
   del,
+  get,
   edit
 }

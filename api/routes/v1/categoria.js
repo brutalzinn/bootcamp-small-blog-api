@@ -14,9 +14,15 @@ module.exports = (router) => {
       .put(
       categoriaController.editCategoria
       )
+      router.route('/categoria/:id')
       .delete(
       categoriaController.delCategoria
       )
+      router.route('/categoria/:id')
+      .get(
+        categoriaController.getCategoria
+      )
+
     
   
   

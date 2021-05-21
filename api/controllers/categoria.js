@@ -1,5 +1,5 @@
 
-const {create,list,del,edit} = require('../services/categoria.service');
+const {create,list,del,edit,get} = require('../services/categoria.service');
 
 
 const createCategoria= async (req,res,next) => {
@@ -20,6 +20,12 @@ const createCategoria= async (req,res,next) => {
     });
     
   }
+  const getCategoria = async (req,res,next) => {
+    const {id} = req.params
+  const response = await get(id)
+  
+     return res.status(200).json(response)
+    }
   const lista = async (req,res,next) => {
 
   const response = await list()
@@ -38,6 +44,7 @@ const createCategoria= async (req,res,next) => {
   module.exports = {
     createCategoria,
     delCategoria,
+    getCategoria,
     lista,
     editCategoria
   }
