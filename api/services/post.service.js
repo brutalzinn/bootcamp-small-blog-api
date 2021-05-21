@@ -10,6 +10,10 @@ const get = async (id) => {
   const json = await openFile('post')
   return json.find((item)=>item.id == id)
 }
+const getCustom = async (column,value) => {
+  const json = await openFile('post')
+  return json.find((item)=>item[column] == value)
+}
 const del = async (body) => {
 
 await Delete('post',body)
@@ -24,5 +28,6 @@ module.exports = {
   list,
   del,
   get,
+  getCustom,
   edit
 }
