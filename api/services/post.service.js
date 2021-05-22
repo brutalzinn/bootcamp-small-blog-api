@@ -1,10 +1,14 @@
 const {openFile,createModel,Insert,Update,Delete} = require('../utils/database.utils')
+const { tagsUtil,tagsCreator,tagsUpdate,tagsSync } = require('../utils/tags.utils')
 
 const create = async (body) => {
   await Insert('post',createModel(body))
+
 }
 const edit = async (body) => {
 await Update('post',body)
+  await tagsSync('categoria','post','categoria')
+
 }
 const get = async (id) => {
   const json = await openFile('post')

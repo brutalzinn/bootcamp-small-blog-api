@@ -17,6 +17,8 @@ const edit = async (body) => {
 const del = async (body) => {
   
   await Delete('categoria',body)
+  await tagsSync('categoria','post','categoria')
+
 }
 
 const list = async (body) => {

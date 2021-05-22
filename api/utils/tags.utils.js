@@ -1,5 +1,5 @@
 const {tagsGenerator} = require('./tags.generator')
-const {openFile,createModel,Insert,Update,Delete} = require('../utils/database.utils')
+const {openFile,createModel,Insert,Update,Delete,updateOverwrite} = require('../utils/database.utils')
 
 
 const tagsUtil = (model) =>{
@@ -34,22 +34,43 @@ const tagsSync = async (origin,destin,key) =>{
     databaseDestin.map((origin,index)=>{
         let originTags = []
         if(isArray(origin[key])){
-            origin[key].map((category)=>{
+            origin[key].map((category,keyIndex)=>{
                 let categoryFinder = databaseOrigin.find((v)=> v.id == category)
-                tagsCreator(categoryFinder).map((catTag)=>{
-                    originTags.push(catTag)
-                })
+                if(!categoryFinder){
+                    if(Object.keys(origin[key]).length == 1){
+                        console.log('executou')
+                        delete databaseDestin[index][key]
+                        console.log('toremove',databaseDestin[index])
+                    }else{
+                        origin[key].splice(keyIndex,1)
+                    }
+                 //   return false
+                }else{
+                    tagsCreator(categoryFinder).map((catTag)=>{
+                        originTags.push(catTag)
+                    })
+                }
+          
             })
         }else{
             let categoryFinder = databaseOrigin.find((v)=> v.id == origin[key])
-            tagsCreator(categoryFinder).map((catTag)=>{
-                originTags.push(catTag)
-            })
+            console.log('FSDFFSDSDF',categoryFinder)
+            if(!categoryFinder){
+                console.log('sem indetificao',origin[key])
+                console.log('categoria sem array não encontrada')
+              delete databaseDestin[index][key]
+            }else{
+                tagsCreator(categoryFinder).map((catTag)=>{
+                    originTags.push(catTag)
+                })
+            }
         }
         const update = async () =>{ 
             let newTags = tagsCreator(origin)
+            // if(Object.values(origin[key]).length == 0){
+            // }
             databaseDestin[index]['tags'] = [...newTags,...originTags]
-            await Update('post',databaseDestin[index])
+            await updateOverwrite('post',databaseDestin[index])
         }
         update()
     }) 
