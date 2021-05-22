@@ -1,15 +1,15 @@
+function isArray(obj){
+    return !!obj && obj.constructor === Array;
+}
 const tagsGenerator =  (model) =>{
-    console.log('generator',process.env.TAGS_ATTRIBUTES)
     const regex = /[\s,\.;:\(\)\-']/
     let toTags = process.env.TAGS_ATTRIBUTES.split(' ');
-    console.log(toTags)
-    let tags = []
 
+    let tags = []
     toTags.map((item)=>{
-        console.log('ttt',item)
         if(model[item]){
 
-           if(model[item].isArray){
+           if(isArray(model[item])){
             model[item].map((item)=>{
                 tags.push(...item.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toUpperCase().trim().split(regex))   
             })
