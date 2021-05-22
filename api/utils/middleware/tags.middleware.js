@@ -13,15 +13,25 @@ if(!tagEnabled){
     next()
 }
 let categoriaTag = []
+console.log('middleware chamado',body)
+var myCategory = await openFile('categoria')
+console.log(myCategory)
 if(isArray(body['categoria'])){
     body['categoria'].map((item)=>{
-        let myCategory = openFile('categoria').find((f)=>{f.id == item})
-        console.log('middleware',myCategory)
-        categoriaTag.push(myCategory)
+      let findedCategory  = myCategory.find((f)=>f.id == item)
+      tagsGenerator(findedCategory).map((c)=>{
+        categoriaTag.push(c)
+      })
     })
+}else{
+  
+    let findedCategory = myCategory.find((f)=>f.id == body['categoria'])
+    tagsGenerator(findedCategory).map((c)=>{
+        categoriaTag.push(c)
+      })
+
 }
-let postTag = tagsGenerator(body)
-req.body = { ...body,tags:tagsGenerator(body) }
+req.body = { ...body,tags:[...tagsGenerator(body),...categoriaTag] }
 
 
 next()
