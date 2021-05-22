@@ -8,7 +8,7 @@ app.use(cors());
 const router = require('./routes/index');
 router(app);
 
-const port = 8000
+const port = 4000
 
 app.listen(port, () => {
 });

@@ -5,8 +5,15 @@ const root_dir  = path.join(path.dirname(require.main.filename),'api','database'
 
 
 const openFile = async (arquivo) =>{
-   const json =  fs.readFileSync(path.join(root_dir,arquivo+'.json'));
-   return JSON.parse(json)
+    let filePath = path.join(root_dir,arquivo+'.json')
+    if (fs.existsSync(filePath)) {
+        const json =  fs.readFileSync(filePath);
+        return JSON.parse(json)
+      }else{
+        await saveFile(arquivo,[])
+        const json =  fs.readFileSync(filePath);
+        return JSON.parse(json)
+      }
 }
 const createModel = (model) =>{
     return {...model,id:uuid()}
