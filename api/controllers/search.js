@@ -3,9 +3,8 @@
 const {getDatabaseInfo,searchFinder} = require('../services/search.service');
 
   const search = async (req,res,next) => {
-    const {id} = req.params
-  const response = await get(id)
-  
+  const response = await searchFinder(req)
+  console.log('######TTTT',response)
      return res.status(200).json(response)
     }
 
