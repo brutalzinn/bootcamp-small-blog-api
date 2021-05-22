@@ -4,3 +4,4 @@ docker-compose.yml
 docker.env
 Dockerfile
 package-lock.json
+api/database/
