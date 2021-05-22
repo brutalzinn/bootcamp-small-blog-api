@@ -8,15 +8,15 @@ const get = async (id) => {
   return json.find((item)=>item.id == id)
 }
 const edit = async (body) => {
-await Update('categoria',body)
+  await Update('categoria',body)
 }
 const del = async (body) => {
-
-await Delete('categoria',body)
+  
+  await Delete('categoria',body)
 }
 
 const list = async (body) => {
- return await openFile('categoria')
+  return await openFile('categoria')
 }
 
 module.exports = {
