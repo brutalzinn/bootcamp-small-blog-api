@@ -21,12 +21,7 @@ const createPost= async (req,res,next) => {
     
   }
   
-  const getCustomFinder = async (req,res,next) => {
-    const {column,value} = req.params
-  const response = await getCustom(column,value)
-  
-     return res.status(200).json(response)
-    }
+
   const getPost = async (req,res,next) => {
     const {id} = req.params
   const response = await get(id)
@@ -53,7 +48,6 @@ const createPost= async (req,res,next) => {
     delPost,
     getPost,
     lista,
-    getCustomFinder,
     editPost
   }
   

@@ -13,10 +13,6 @@ module.exports = (router) => {
       .put(
       postController.editPost
       )
-      router.route('/post/find/:column/:value')
-      .get(
-        postController.getCustomFinder
-      )
       router.route('/post/:id')
       .delete(
       postController.delPost
