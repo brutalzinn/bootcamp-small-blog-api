@@ -1,5 +1,5 @@
 const postController = require('../../controllers/post');
-
+const {tagsHandler} = require('../../utils/middleware/tags.middleware')
 
 module.exports = (router) => {
 
@@ -7,7 +7,7 @@ module.exports = (router) => {
       .get(
         postController.lista
       )
-      .post(
+      .post(tagsHandler,
         postController.createPost
       )
       .put(

@@ -15,6 +15,13 @@ switch(myArgs[0]){
       console.log('Feel free to change all this wild forest!')
       console.log('Github: @brutalzinn', 'Gitlab: @roberto.paes','Linkedin: roberto-paes')
     break;
+    case 'health':
+     console.log(`checking health of ${myArgs[1]}`)
+     let filePath = path.join(root_dir,myArgs[1]+'.json')
+    if (fs.existsSync(filePath)) {
+      console.log(`The health of ${myArgs[1]} has 100% OK`)
+    }
+    break;
     case 'create':
 
     break;
