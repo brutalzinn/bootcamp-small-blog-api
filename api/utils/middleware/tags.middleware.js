@@ -1,4 +1,4 @@
-const tagEnabled = process.env.TAGS
+const tagEnabled =  Boolean(parseInt(process.env.TAGS))
 const {tagsGenerator} = require('../../utils/tags.generator')
 const {openFile,createModel,Insert,Update,Delete,updateOverwrite} = require('../../utils/database.utils')
 function isArray(obj){
@@ -8,14 +8,16 @@ function isArray(obj){
 
 const tagsHandler = async (req, res, next) =>{
     console.log(tagEnabled)
+  
     const { body } = req;
     if(!tagEnabled){
-        next()
+        console.log('#########tag disabled')
+       return next()
     }
     if(!body['categoria']){
         req.body = { ...body,tags:[...tagsGenerator(body)] }
 
-        next()
+       return next()
     }
     let categoriaTag = []
     var myCategory = await openFile('categoria')

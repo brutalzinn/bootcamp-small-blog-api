@@ -1,6 +1,6 @@
 const {tagsGenerator} = require('./tags.generator')
 const {openFile,createModel,Insert,Update,Delete,updateOverwrite} = require('../utils/database.utils')
-const tagEnabled = process.env.TAGS
+const tagEnabled =  Boolean(parseInt(process.env.TAGS))
 
 const isEnabled = () =>{
     return tagEnabled
