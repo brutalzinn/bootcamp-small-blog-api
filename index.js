@@ -9,7 +9,7 @@ if (node_environment === 'development') {
 require('./api/server');
 
 console.log(
-  `<<< ${name} v${version} was started in 'DEV' environment on port ${process.env.PORT} >>>`
+  `<<< ${name} v${version} BOOTCAMP-NIGHT-API. Uma api para simular conexão com banco de dados e facilitar o desenvolvimento da camada de interface. >>>`
 );
 var messagem = 'Olá!!! bem-vindo à selva, bootcampers da noite. \n Essa é uma pequena api que armazena dados em um documento json. \n Parecido com o MongoDB!'+
 '\n Sinta-se livre para alterar, fazer pedidos de merge e construir seu projeto super maneiro com essa api'+
