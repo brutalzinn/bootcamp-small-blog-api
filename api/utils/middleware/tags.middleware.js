@@ -12,8 +12,12 @@ const tagsHandler = async (req, res, next) =>{
     if(!tagEnabled){
         next()
     }
+    if(!body['categoria']){
+        req.body = { ...body,tags:[...tagsGenerator(body)] }
+
+        next()
+    }
     let categoriaTag = []
-    console.log('middleware chamado',body)
     var myCategory = await openFile('categoria')
     console.log(myCategory)
     if(isArray(body['categoria'])){

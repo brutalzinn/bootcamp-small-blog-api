@@ -23,7 +23,6 @@ const createModel = (model) =>{
     return {id:uuid(),...model}
 }
 const Update = async (arquivo,model) =>{
-    console.log('#####model',model)
     let json = await openFile(arquivo)
     let copyJson = [...json]
     var editTeste = copyJson.findIndex((item)=>item.id == model.id)
